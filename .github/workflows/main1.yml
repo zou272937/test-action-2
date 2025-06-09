@@ -1,6 +1,7 @@
 name: test-2-a
 
 on:
+  push:
   workflow_dispatch:
   workflow_call:
     inputs:
@@ -20,11 +21,11 @@ jobs:
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           echo ${STATUS}
-          if [ "${STATUS}" -eq 200 ]; then
-            RUN_BRANCH="${BRANCH_NAME}"
-          else
-            RUN_BRANCH=main
-          fi
+          # if [ "${STATUS}" -eq 200 ]; then
+          #   RUN_BRANCH="${BRANCH_NAME}"
+          # else
+          #   RUN_BRANCH=main
+          # fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}

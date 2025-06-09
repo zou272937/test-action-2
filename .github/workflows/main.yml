@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${inputs.branch_name}
+        # with:
+        #   ref: ${inputs.branch_name}
       - name: test-step-2
         run: echo "Project 2"

@@ -3,6 +3,14 @@ name: test-2-a
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      branch_name:
+        required: false
+        type: string
+        default: main
+
+env:
+  RUN_BRANCH: main
 
 jobs:
   test-1a:
@@ -12,11 +20,15 @@ jobs:
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           echo ${STATUS}
+          if [ "${STATUS}" -eq 200 ]; then
+            RUN_BRANCH="${BRANCH_NAME}"
+          else
+            RUN_BRANCH="main"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: "main"
+          BRANCH_NAME: ${{ inputs.branch_name }}
           REPO: ${{ github.repository }}
 
   action-test-2:
     needs: test-1a
-    uses: zou272937/test-action-2/.github/workflows/main.yml@main
+    uses: zou272937/test-action-2/.github/workflows/main.yml@${RUN_BRANCH}

@@ -29,6 +29,11 @@ jobs:
           BRANCH_NAME: ${{ inputs.branch_name }}
           REPO: ${{ github.repository }}
 
+      - name: clone
+        uses: actions/checkout@v3
+        with:
+          ref: ${RUN_BRANCH}
+
   action-test-2:
     needs: test-1a
-    uses: zou272937/test-action-2/.github/workflows/main.yml@${RUN_BRANCH}
+    uses: zou272937/test-action-2/.github/workflows/main.yml@$main

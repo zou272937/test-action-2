@@ -23,7 +23,7 @@ jobs:
           if [ "${STATUS}" -eq 200 ]; then
             RUN_BRANCH="${BRANCH_NAME}"
           else
-            RUN_BRANCH="main"
+            RUN_BRANCH=main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,7 +31,7 @@ jobs:
           REPO: ${{ github.repository }}
 
       - name: clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${RUN_BRANCH}
 

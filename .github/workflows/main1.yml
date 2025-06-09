@@ -34,11 +34,8 @@ jobs:
           REPO: ${{ github.repository }}
           RUN_BRANCH: ${{ env.RUN_BRANCH }}
 
-      - name: clone
-        uses: actions/checkout@v4
-        with:
-          ref: ${RUN_BRANCH}
-
   action-test-2:
     needs: test-1a
     uses: zou272937/test-action-2/.github/workflows/main.yml@main
+    with: 
+      branch_name: ${RUN_BRANCH}

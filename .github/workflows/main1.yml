@@ -13,9 +13,9 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           echo ${STATUS}
         env:
-          GITHUB_TOKEN: $${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: "main"
-          REPO: $${{ github.repository }}
+          REPO: ${{ github.repository }}
 
   action-test-2:
     needs: test-1a

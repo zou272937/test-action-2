@@ -1,0 +1,14 @@
+name: test-2
+
+on:
+  workflow_run:
+    workflows: ["test-1"]
+    types:
+      - completed
+
+jobs:
+  test-job-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test-step-2
+        run: echo "Project 2"

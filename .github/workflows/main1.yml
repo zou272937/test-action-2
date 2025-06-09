@@ -5,5 +5,17 @@ on:
   workflow_call:
 
 jobs:
+  test-1a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%http_code" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
+          echo ${STATUS}
+        env:
+          GITHUB_TOKEN: $${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: "main"
+          REPO: $${{ github.repository }}
+
   action-test-2:
     uses: zou272937/test-action-2/.github/workflows/main.yml@main

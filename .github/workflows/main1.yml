@@ -22,21 +22,22 @@ jobs:
           echo https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME}
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           echo ${STATUS}
-          # if [ "${STATUS}" -eq 200 ]; then
-          #   RUN_BRANCH="${BRANCH_NAME}"
-          # else
-          #   RUN_BRANCH=main
-          # fi
+          if [ "${STATUS}" -eq 200 ]; then
+            RUN_BRANCH="${BRANCH_NAME}"
+          else
+            RUN_BRANCH=main
+          fi
+          echo ${RUN_BRANCH}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}
           REPO: ${{ github.repository }}
           RUN_BRANCH: ${{ env.RUN_BRANCH }}
 
-      # - name: clone
-      #   uses: actions/checkout@v4
-      #   with:
-      #     ref: ${RUN_BRANCH}
+      - name: clone
+        uses: actions/checkout@v4
+        with:
+          ref: ${RUN_BRANCH}
 
   action-test-2:
     needs: test-1a

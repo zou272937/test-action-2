@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: check
         run: |
+          echo https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME}
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           echo ${STATUS}
           # if [ "${STATUS}" -eq 200 ]; then

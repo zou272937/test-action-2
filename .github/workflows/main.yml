@@ -5,6 +5,7 @@ on:
     workflows: ["test-1"]
     types:
       - completed
+  workflow_call:
 
 jobs:
   test-job-2:

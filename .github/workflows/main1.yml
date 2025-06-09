@@ -2,6 +2,7 @@ name: test-2-a
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   action-test-2:

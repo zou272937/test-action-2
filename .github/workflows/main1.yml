@@ -24,6 +24,7 @@ jobs:
             RUN_BRANCH="${BRANCH_NAME}"
           else
             RUN_BRANCH="main"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}

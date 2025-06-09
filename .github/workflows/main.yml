@@ -16,8 +16,7 @@ jobs:
   test-job-2:
     runs-on: ubuntu-latest
     steps:
-      - name: clone
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${inputs.branch_name}
       - name: test-step-2

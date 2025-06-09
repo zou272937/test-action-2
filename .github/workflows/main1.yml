@@ -1,0 +1,8 @@
+name: test-2-a
+
+on:
+  workflow_dispatch:
+
+jobs:
+  action-test-2:
+    uses: zou272937/test-action-2/.github/workflows/main.yml@main

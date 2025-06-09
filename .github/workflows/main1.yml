@@ -32,10 +32,10 @@ jobs:
           REPO: ${{ github.repository }}
           RUN_BRANCH: ${{ env.RUN_BRANCH }}
 
-      - name: clone
-        uses: actions/checkout@v4
-        with:
-          ref: ${RUN_BRANCH}
+      # - name: clone
+      #   uses: actions/checkout@v4
+      #   with:
+      #     ref: ${RUN_BRANCH}
 
   action-test-2:
     needs: test-1a

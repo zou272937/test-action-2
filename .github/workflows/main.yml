@@ -22,6 +22,6 @@ jobs:
           BRANCH_RUN: ${{ inputs.branch_name }}
       - uses: actions/checkout@v4
         with:
-          ref: main
-        env:
-          BRANCH_RUN: ${{ inputs.branch_name }}
+          ref: ${{ inputs.branch_name }}
+      - name: Confirm current branch
+        run: git branch --show-current

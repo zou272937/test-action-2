@@ -8,10 +8,9 @@ on:
   workflow_call:
     inputs:
       branch_name:
-        required: false
+        required: true
         type: string
-        default: main
-
+        
 jobs:
   test-job-2:
     runs-on: ubuntu-latest

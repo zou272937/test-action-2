@@ -9,9 +9,6 @@ on:
         required: false
         type: string
 
-env:
-  RUN_BRANCH: main
-
 jobs:
   test-1a:
     runs-on: ubuntu-latest
@@ -34,7 +31,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}
-          REPO: ${{ github.repository }}
+          REPO: zou272937/test-action-2
+          # REPO: ${{ github.repository }}
 
   action-test-2:
     needs: test-1a

@@ -16,8 +16,6 @@ env:
 jobs:
   test-1a:
     runs-on: ubuntu-latest
-    env:
-      RUN_BRANCH: ${{ env.RUN_BRANCH }}
     steps:
       - name: check
         run: |

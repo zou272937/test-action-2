@@ -16,6 +16,8 @@ env:
 jobs:
   test-1a:
     runs-on: ubuntu-latest
+    env:
+      RUN_BRANCH: ${{ env.RUN_BRANCH }}
     steps:
       - name: check
         run: |
@@ -32,7 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}
           REPO: ${{ github.repository }}
-          RUN_BRANCH: ${{ env.RUN_BRANCH }}
 
   action-test-2:
     needs: test-1a

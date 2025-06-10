@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: test-step-2
         run: echo "Project 2" ${inputs.branch_name}
+        env:
+          BRANCH_RUN: ${{ inputs.branch_name }}
       - uses: actions/checkout@v4
         with:
-          ref: ${inputs.branch_name}
+          ref: ${BRANCH_RUN}
+        env:
+          BRANCH_RUN: ${{ inputs.branch_name }}

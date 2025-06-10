@@ -22,6 +22,7 @@ jobs:
       - name: check
         id: check
         run: |
+          echo ${BRANCH_NAME}
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           if [ "${STATUS}" -eq 200 ]; then
             echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT

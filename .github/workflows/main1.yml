@@ -28,7 +28,7 @@ jobs:
           else
             RUN_BRANCH=main
           fi
-          echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "branch=${RUN_BRANCH}" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}

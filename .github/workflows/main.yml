@@ -22,6 +22,6 @@ jobs:
           BRANCH_RUN: ${{ inputs.branch_name }}
       - uses: actions/checkout@v4
         with:
-          ref: ${BRANCH_RUN}
+          ref: main
         env:
           BRANCH_RUN: ${{ inputs.branch_name }}

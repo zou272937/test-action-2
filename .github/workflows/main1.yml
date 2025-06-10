@@ -8,7 +8,6 @@ on:
       branch_name:
         required: false
         type: string
-        default: main
 
 env:
   RUN_BRANCH: main
@@ -26,6 +25,8 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           if [ "${STATUS}" -eq 200 ]; then
             echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          elif ["${BRANCH_NAME}" -eq ""]; then
+            echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
           else
             echo "branch=main" >> $GITHUB_OUTPUT
           fi

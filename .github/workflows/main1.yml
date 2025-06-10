@@ -37,4 +37,4 @@ jobs:
     needs: test-1a
     uses: zou272937/test-action-2/.github/workflows/main.yml@main
     with: 
-      branch_name: ${RUN_BRANCH}
+      branch_name: ${{env.RUN_BRANCH}}

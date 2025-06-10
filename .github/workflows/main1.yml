@@ -24,11 +24,11 @@ jobs:
         run: |
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${REPO}/branches/${BRANCH_NAME})
           if [ "${STATUS}" -eq 200 ]; then
-            RUN_BRANCH="${BRANCH_NAME}"
+            echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           else
-            RUN_BRANCH=main
+            echo "branch=main" >> $GITHUB_OUTPUT
           fi
-          echo "branch=${RUN_BRANCH}" >> $GITHUB_OUTPUT
+          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}

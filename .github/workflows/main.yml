@@ -27,4 +27,6 @@ jobs:
       - name: Confirm current branch
         run: git branch --show-current
       - name: test-step-3
-        run: echo ${GITHUB_WORKSPACE}
+        run: |
+          echo ${GITHUB_WORKSPACE}
+          ls

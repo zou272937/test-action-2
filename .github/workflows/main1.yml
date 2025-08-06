@@ -27,12 +27,38 @@ jobs:
           else
             echo "branch=main" >> $GITHUB_OUTPUT
           fi
-          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ inputs.branch_name }}
           REPO: zou272937/test-action-2
           # REPO: ${{ github.repository }}
+      - name: extract branch
+        id: extra
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          echo "Branch: $BRANCH"
+          ISSUE_ID=$(echo "$BRANCH" | cut -d'/' -f2)
+          NAME=$(echo "$BRANCH" | cut -d'/' -f3)
+          SUFFIX="${ISSUE_ID}-${NAME}"
+          echo "ISSUE_ID=$ISSUE_ID" >> $GITHUB_OUTPUT
+          echo "NAME=$NAME" >> $GITHUB_OUTPUT
+          echo "SUFFIX=$SUFFIX" >> $GITHUB_OUTPUT
+
+      - name: list branch
+        id: list_branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/zou272937/test-action-2/branches > branches.json
+          echo "Branches listed."
+      - name: find matching
+        id: find
+        run: |
+          MATCH=$(jq -r --arg suffix "${{ steps.extra.outputs.SUFFIX }}" '.[] | select(.name | endswith ($suffix)) | .name' branches.json)
+          if [ -z "$MATCH" ]; then
+            MATCH="main"
+          fi
+          echo "branch=$MATCH" >> $GITHUB_OUTPUT
 
   action-test-2:
     needs: test-1a

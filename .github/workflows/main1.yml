@@ -54,11 +54,13 @@ jobs:
       - name: find matching
         id: find
         run: |
+          echo "${{ steps.extra.outputs.SUFFIX }}"
           MATCH=$(jq -r --arg suffix "${{ steps.extra.outputs.SUFFIX }}" '.[] | select(.name | endswith ($suffix)) | .name' branches.json)
           if [ -z "$MATCH" ]; then
             MATCH="main"
           fi
           echo "branch=$MATCH" >> $GITHUB_OUTPUT
+          echo "$MATCH"
 
   action-test-2:
     needs: test-1a

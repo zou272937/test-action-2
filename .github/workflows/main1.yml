@@ -13,7 +13,7 @@ jobs:
   test-1a:
     runs-on: ubuntu-latest
     outputs:
-      branch: ${{ steps.check.outputs.branch }}
+      branch: ${{ steps.list_branch.outputs.branch }}
     steps:
       - name: check
         id: check

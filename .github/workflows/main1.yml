@@ -73,3 +73,7 @@ jobs:
       branch_name: ${{ needs.test-1a.outputs.branch }}
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: read
+      actions: read
+      id-token: write

@@ -48,5 +48,16 @@ jobs:
           if [ -z "$MATCH" ]; then
             MATCH="main"
           fi
-          echo "branch=$MATCH" >> $GITHUB_OUTPUT
+          echo "BRANCH=$MATCH" >> $GITHUB_OUTPUT
           echo "$MATCH"
+
+      - name: clone
+        id: clone
+        uses: actions/checkout@v4
+        with:
+          repository: zou272937/test-action-1
+          ref: ${{ BRANCH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ steps.find.outputs.BRANCH }}
+        

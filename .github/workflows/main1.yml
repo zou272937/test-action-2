@@ -1,7 +1,6 @@
 name: test-2-a
 
 on:
-  push:
   workflow_dispatch:
   workflow_call:
     inputs:

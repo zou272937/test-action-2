@@ -57,7 +57,7 @@ jobs:
         with:
           repository: zou272937/test-action-1
           ref: ${{ steps.find.outputs.BRANCH }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REUSABLE_WORKFLOW_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: ${{ steps.find.outputs.BRANCH }}

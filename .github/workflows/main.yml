@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: zou272937/test-action-2
-          ref: ${{ inputs.branch_name }}
+          ref: ${{ github.ref_name }}
       - name: Confirm current branch
         run: git branch --show-current
       - name: test-step-3

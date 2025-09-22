@@ -19,7 +19,7 @@ jobs:
       - name: test-step-2
         run: echo "Project 2" ${BRANCH_RUN}
         env:
-          BRANCH_RUN: ${{ inputs.branch_name }}
+          BRANCH_RUN: ${{ github.ref_name }}
       - uses: actions/checkout@v4
         with:
           repository: zou272937/test-action-2

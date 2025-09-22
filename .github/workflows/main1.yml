@@ -73,8 +73,4 @@ jobs:
   action-test-2:
     needs: test-1a
     uses: zou272937/test-action-2/.github/workflows/main.yml@main
-    with: 
-      branch_name: ${{ needs.test-1a.outputs.branch }}
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.REUSABLE_WORKFLOW_TOKEN }}
 
